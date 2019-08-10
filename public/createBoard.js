@@ -4,7 +4,7 @@ let row = false, col = false, maxCol = 8;
 const addRow = function () {
     const next_row = document.createElement("div")
     next_row.setAttribute("class", "row");
-    next_row.setAttribute("id", `row_${board.children.length}`);
+    next_row.setAttribute("val", `${board.children.length}`);
     board.append(next_row);
     row = next_row;
 }
@@ -25,6 +25,8 @@ const addGameTile = function (letter) {
     const tile = document.createElement("button");
     tile.setAttribute("class", "tile");
     tile.setAttribute("val", letter);
+    // getLocation is a function in onButtonPress.js
+    tile.setAttribute("onclick", "getLocation()")
     tile.textContent = letter;
     addColumn(tile);
 }
