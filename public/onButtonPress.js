@@ -20,8 +20,8 @@ const getLocation = function () {
     // Every letter is in a column which is in a row, 
     // and each row/col has a val attribute with its index
     const letter = new Letter(
-        parseInt(event.target.parentElement.getAttribute("val")), //row
-        parseInt(event.target.parentElement.parentElement.getAttribute("val")), //col
+        parseInt(event.target.parentElement.getAttribute("val")), //col
+        parseInt(event.target.parentElement.parentElement.getAttribute("val")), //row
         event.target.textContent //content
     );
     // If they click on a letter they've already selected,
@@ -30,7 +30,7 @@ const getLocation = function () {
         // Otherwise, add the letter they clicked on to the word
         word.push(letter);
         // And show that the letter's been selected
-        event.target.setAttribute("style", "border:2px;border-color:green");
+        event.target.setAttribute("class", "tile btn btn-success");
     }
     displayWord();
 }
@@ -44,11 +44,13 @@ const shortenWord = function (cutoff) {
             newLength = i;
         }
         if (shortening) {
+            // Col is one greater when grabbing from the dom because
+            // there's a centering buffer
             const buttonHoldingLetter = document.getElementById("game_board")
                 .children[letter.row]
-                .children[letter.col];
+                .children[letter.col+1];
             // Show that the button is no longer selected
-            buttonHoldingLetter.children[0].removeAttribute("style");
+            buttonHoldingLetter.children[0].setAttribute("class", "tile btn btn-info");
         }
     });
     if (shortening) {
