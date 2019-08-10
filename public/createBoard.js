@@ -24,7 +24,6 @@ const addColumn = function (element) {
 const addGameTile = function (letter) {
     const tile = document.createElement("button");
     tile.setAttribute("class", "tile");
-    tile.setAttribute("val", letter);
     // getLocation is a function in onButtonPress.js
     tile.setAttribute("onclick", "getLocation()")
     tile.textContent = letter;

@@ -3,7 +3,7 @@
 let word = []
 
 class Letter {
-    constructor(row, col, content) {
+    constructor(col, row, content) {
         this.row = row;
         this.col = col;
         this.content = content;
@@ -26,19 +26,35 @@ const getLocation = function () {
     );
     // If they click on a letter they've already selected,
     // Remove that point and any that follows from their word
-    let upto;
-    word.forEach((other, i) => {
-        if (letter.equals(other)) {
-            upto = i;
-        }
-    });
-    if (upto != undefined) {
-        word = word.splice(0, upto);
-    } else {
+    if (!shortenWord(letter)) {
         // Otherwise, add the letter they clicked on to the word
         word.push(letter);
+        // And show that the letter's been selected
+        event.target.setAttribute("style", "border:2px;border-color:green");
     }
     displayWord();
+}
+
+const shortenWord = function (cutoff) {
+    // Returns true if shortened, false if not
+    let shortening = false, newLength;
+    word.forEach((letter, i) => {
+        if (letter.equals(cutoff)) {
+            shortening = true;
+            newLength = i;
+        }
+        if (shortening) {
+            const buttonHoldingLetter = document.getElementById("game_board")
+                .children[letter.row]
+                .children[letter.col];
+            // Show that the button is no longer selected
+            buttonHoldingLetter.children[0].removeAttribute("style");
+        }
+    });
+    if (shortening) {
+        word = word.splice(0, newLength);
+    }
+    return shortening;
 }
 
 const displayWord = function () {

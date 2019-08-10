@@ -9,11 +9,22 @@
 
     <!-- Boostrap Stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .tile {
+            margin-top: 5px;
+            background-color: darkturquoise
+        }
+    </style>
 </head>
+
 <body>
     <main class="container" id="game_board"></main>
-    <aside id="current"></aside>
+    <section class="container">
+        <h1>Current String: <span id="current"></span></h1>
+        <button onclick="submit">Submit Word</button>
+    </section>
     <script type="text/javascript" src="onButtonPress.js"></script>
     <script type="text/javascript" src="createBoard.js"></script>
 </body>
+
 </html>
