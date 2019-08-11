@@ -27,12 +27,28 @@ const getLocation = function () {
     // If they click on a letter they've already selected,
     // Remove that point and any that follows from their word
     if (!shortenWord(letter)) {
-        // Otherwise, add the letter they clicked on to the word
-        word.push(letter);
-        // And show that the letter's been selected
-        event.target.setAttribute("class", "tile btn btn-success");
+        // Otherwise, try to add the letter they clicked on to the word
+        if (isValid(letter)) {
+            word.push(letter);
+            // And show that the letter's been selected
+            event.target.setAttribute("class", "tile btn btn-success");
+        } else {
+            alert("Please select a letter closer to your previous choice");
+        }
     }
     displayWord();
+}
+
+// The player has to choose a letter with a distance of 1 from their 
+const isValid = function (letter) {
+    if (word.length == 0) return true;
+    const prev = word[word.length-1];
+    if (
+        Math.abs(letter.col - prev.col) <= 1 &&
+        Math.abs(letter.row - prev.row) <= 1
+    ) return true;
+    // Otherwise
+    return false;
 }
 
 const shortenWord = function (cutoff) {
@@ -48,7 +64,7 @@ const shortenWord = function (cutoff) {
             // there's a centering buffer
             const buttonHoldingLetter = document.getElementById("game_board")
                 .children[letter.row]
-                .children[letter.col+1];
+                .children[letter.col + 1];
             // Show that the button is no longer selected
             buttonHoldingLetter.children[0].setAttribute("class", "tile btn btn-info");
         }
