@@ -46,7 +46,7 @@ const addColumn = function (element) {
 const addGameTile = function () {
     const tile = document.createElement("button");
     tile.setAttribute("class", "tile btn btn-info");
-    // getLocation is a function in onButtonPress.js
+    // getLocation is a function in gamePlay.js
     tile.setAttribute("onclick", "getLocation()")
     tile.textContent = String.fromCharCode(65 + Math.floor(Math.random() * 26));
     addColumn(tile);
