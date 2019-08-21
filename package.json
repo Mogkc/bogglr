@@ -1,0 +1,23 @@
+{
+  "name": "boggle",
+  "version": "1.0.0",
+  "description": "A game where players string together letters",
+  "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mogkc/bogglr.git"
+  },
+  "author": "Carson Mogk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mogkc/bogglr/issues"
+  },
+  "homepage": "https://github.com/Mogkc/bogglr#readme"
+}
