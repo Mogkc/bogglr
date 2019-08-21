@@ -2,18 +2,6 @@
 // After the user is happy with their word, they'll submit it.
 let word = []
 
-class Letter {
-    constructor(col, row, content) {
-        this.row = row;
-        this.col = col;
-        this.content = content;
-    }
-
-    equals(obj) {
-        return obj.row === this.row && obj.col === this.col;
-    }
-}
-
 // This function is referenced by name in createBoard.js
 const getLocation = function () {
     event.preventDefault();
@@ -42,7 +30,7 @@ const getLocation = function () {
 // The player has to choose a letter with a distance of 1 from their 
 const isValid = function (letter) {
     if (word.length == 0) return true;
-    const prev = word[word.length-1];
+    const prev = word[word.length - 1];
     if (
         Math.abs(letter.col - prev.col) <= 1 &&
         Math.abs(letter.row - prev.row) <= 1
@@ -64,9 +52,10 @@ const shortenWord = function (cutoff) {
             // there's a centering buffer
             const buttonHoldingLetter = document.getElementById("game_board")
                 .children[letter.row]
-                .children[letter.col + 1];
+                .children[letter.col + 1]
+                .children[0];
             // Show that the button is no longer selected
-            buttonHoldingLetter.children[0].setAttribute("class", "tile btn btn-info");
+            buttonHoldingLetter.setAttribute("class", "tile btn btn-info");
         }
     });
     if (shortening) {

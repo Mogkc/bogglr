@@ -12,7 +12,7 @@ const addBufferColumn = function () {
 const addRow = function () {
     if(row) addBufferColumn(); // To cap the previous row
     const next_row = document.createElement("div")
-    next_row.setAttribute("class", "row");
+    next_row.setAttribute("class", "row pb-sm-1");
     next_row.setAttribute("val", `${board.children.length}`);
     board.append(next_row);
     row = next_row;
@@ -21,7 +21,7 @@ const addRow = function () {
 }
 
 const addColumn = function (element) {
-    if (!row || row.children.length == maxCol) {
+    if (!row || row.children.length > maxCol) {
         addRow();
     }
     const next_column = document.createElement("div");
@@ -39,4 +39,9 @@ const addGameTile = function (letter) {
     tile.setAttribute("onclick", "getLocation()")
     tile.textContent = letter;
     addColumn(tile);
+}
+
+for(let i = 0; i < 32; i++) {
+    let char = Math.floor(Math.random() * 26);
+    addGameTile(String.fromCharCode(65 + char));
 }
