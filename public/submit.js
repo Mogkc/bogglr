@@ -1,6 +1,7 @@
 const minWordLength = 1;
 
 const submit = function () {
+    // Submit the word
     if(word.length < minWordLength) return;
     sendToServer(word, (word, veracity) => {
         const text = word.reduce((acc, curr) => acc + curr.content, "");
@@ -17,6 +18,9 @@ const submit = function () {
         }
         document.getElementById("results").append(result);
     });
+    // Then clear it and let the player start making another
+    word = [];
+    updateBoardColors();
 }
 
 const sendToServer = function (word, callback) {
