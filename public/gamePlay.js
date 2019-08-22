@@ -16,8 +16,7 @@ const getLocation = function () {
             word.push(letter);
         }
     }
-    updateBoardColors();
-    displayWord();
+    displayGamestate();
 }
 
 // The player has to choose a letter with a distance of 1 from their 
@@ -47,7 +46,8 @@ const shortenWord = function (cutoff) {
     return shortening;
 }
 
-const updateBoardColors = function () {
+const displayGamestate = function () {
+    // Update the board buttons
     board.forEach((row, rowIndex) => {
         row.forEach((letter, columnIndex) => {
             const elementHoldingLetter = document.getElementById("game_board")
@@ -63,13 +63,13 @@ const updateBoardColors = function () {
                 elementHoldingLetter.setAttribute("class", "tile btn btn-light");
             }
         })
-    })
-}
-
-const displayWord = function () {
+    });
+    // And update the current word
     current = document.getElementById("current");
-    let disp = "";
+    let disp = "Current String: ";
     word.forEach(letter => {
+        if(letter.content.length > 10)
+            disp = "";
         disp += letter.content;
     });
     current.textContent = disp;

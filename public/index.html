@@ -26,8 +26,11 @@
     <br>
     <main class="container" id="game_board"></main>
     <section class="container">
-        <h1>Current String: <span id="current"></span></h1>
-        <button onclick="submit()">Submit Word</button>
+        <h1 id="current"></h1>
+        <div id="word_functions">
+            <button onclick="submit()" class="btn">Submit Word</button>
+            <button onclick="finished()" class="btn">Done Finding Words</button>
+        </div>
     </section>
     <section class="container">
         <ul id="results"></ul>

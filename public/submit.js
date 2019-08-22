@@ -3,21 +3,19 @@ const minWordLength = 1;
 const submit = function () {
     // Submit the word
     if (word.length < minWordLength) return;
-    sendToServer(word, displayResult);
+    wordToServer(word, displayResult);
     // Then clear it and let the player start making another
-    word = [];
-    updateBoardColors();
 }
 
-const sendToServer = function (word, callback) {
+const wordToServer = function (submitted, callback) {
     // When there's a backend, this will check he word's veracity
     const veracity = true; // Hard coded for now
     // After recieving a response from the server, it will complete the callback.
-    callback(word, veracity);
+    callback(submitted, veracity);
 }
 
-const displayResult = (word, veracity) => {
-    const text = word.reduce((acc, curr) => acc + curr.content, "");
+const displayResult = (submitted, veracity) => {
+    const text = submitted.reduce((acc, curr) => acc + curr.content, "");
     const result = document.createElement("li");
     if (!veracity) {
         result.textContent = `Sorry, ${text} isn't in our dictionary`;
@@ -36,9 +34,19 @@ const displayResult = (word, veracity) => {
         result.append(remove);
     }
     document.getElementById("results").append(result);
+    word = [];
+    displayGamestate();
 }
 
 const removeResult = function () {
     event.preventDefault();
     event.target.parentElement.remove();
+}
+
+const finished = function () {
+    // Tells the server that the player is finished.
+    // Then locks the board from further gameplay
+    word = [new Letter(1000, 1000, "You finished! Refresh to start a new game.")];
+    document.getElementById("word_functions").remove();
+    displayGamestate();
 }
