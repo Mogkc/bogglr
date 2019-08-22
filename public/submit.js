@@ -15,6 +15,12 @@ const submit = function () {
             linkToDictionary.setAttribute("target", "_blank");
             linkToDictionary.textContent = text;
             result.append(linkToDictionary);
+            // Then add a 'remove from list' button
+            const remove = document.createElement("button");
+            remove.setAttribute("class", "btn btn-danger");
+            remove.setAttribute("onclick", "removeResult()");
+            remove.textContent = "X";
+            result.append(remove);
         }
         document.getElementById("results").append(result);
     });
@@ -28,4 +34,9 @@ const sendToServer = function (word, callback) {
     const veracity = true; // Hard coded for now
     // After recieving a response from the server, it will complete the callback.
     callback(word, veracity)
+}
+
+const removeResult = function () {
+    event.preventDefault();
+    event.target.parentElement.remove();
 }

@@ -52,6 +52,6 @@ const addGameTile = function () {
     addColumn(tile);
 }
 
-for(let i = 0; i < 32; i++) {
+for(let i = 0; i < 8*8; i++) {
     addGameTile();
 }
