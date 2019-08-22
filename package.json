@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A game where players string together letters",
   "main": "server.js",
-  "dependencies": {},
+  "dependencies": {
+    "chai": "^4.2.0"
+  },
   "devDependencies": {
     "mocha": "^6.2.0"
   },
