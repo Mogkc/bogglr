@@ -14,10 +14,10 @@ const wordToServer = function (submitted, callback) {
     callback(submitted, veracity);
 }
 
-const displayResult = (submitted, veracity) => {
+const displayResult = (submitted, isValid) => {
     const text = submitted.reduce((acc, curr) => acc + curr.content, "");
     const result = document.createElement("li");
-    if (!veracity) {
+    if (!isValid) {
         result.textContent = `Sorry, ${text} isn't in our dictionary`;
     } else {
         result.textContent = `Good Job! Click to see the definition: `;
