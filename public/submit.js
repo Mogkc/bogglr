@@ -28,9 +28,8 @@ const displayResult = (submitted, veracity) => {
         result.append(linkToDictionary);
         // Then add a 'remove from list' button
         const remove = document.createElement("button");
-        remove.setAttribute("class", "btn btn-danger");
+        remove.setAttribute("class", "remove btn btn-danger");
         remove.setAttribute("onclick", "removeResult()");
-        remove.textContent = "X";
         result.append(remove);
     }
     document.getElementById("results").append(result);

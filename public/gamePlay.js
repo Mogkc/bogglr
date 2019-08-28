@@ -33,7 +33,8 @@ const isValid = function (letter) {
 
 const shortenWord = function (cutoff) {
     // Returns true if shortened, false if not
-    let shortening = false, newLength;
+    let shortening = false;
+    let newLength;
     word.forEach((letter, i) => {
         if (letter.equals(cutoff)) {
             shortening = true;
@@ -66,7 +67,8 @@ const displayGamestate = function () {
     });
     // And update the current word
     current = document.getElementById("current");
-    let disp = "Current String: ";
+    let disp = (word.length > 0) ? "Current String: " : "Click on a letter to start a word!";
+    console.log(disp);
     word.forEach(letter => {
         if(letter.content.length > 10)
             disp = "";

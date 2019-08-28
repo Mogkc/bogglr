@@ -26,6 +26,7 @@ const createGameboard = function (virtualBoard) {
         // And add the complete row to the dom
         board_front.append(_r);
     });
+    displayGamestate();
 }
 
 const board = generateBoard(5, 5);

@@ -1,0 +1,14 @@
+.tile {
+    font-family: Courier, Monaco, monospace;
+}
+
+.remove {
+    position: relative;
+    left: 5px;
+    height: 1em;
+    width: 1em;
+}
+
+#done {
+    float: right;
+}

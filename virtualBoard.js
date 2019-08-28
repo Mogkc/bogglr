@@ -16,3 +16,5 @@ const generateBoard = function (rows, cols) {
 const randomlyGenerateLetter = function () {
     return String.fromCharCode(65 + Math.floor(Math.random() * 26));
 }
+
+// module.exports = generateBoard;
