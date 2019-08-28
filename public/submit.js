@@ -1,5 +1,3 @@
-const minWordLength = 1;
-
 const submit = function () {
     // Submit the word
     if (word.length < minWordLength) return;
@@ -31,6 +29,9 @@ const displayResult = (submitted, isValid) => {
         remove.setAttribute("class", "remove btn btn-danger");
         remove.setAttribute("onclick", "removeResult()");
         result.append(remove);
+
+        // When there's a valid word, let them say done
+        document.getElementById("done").setAttribute("class", "btn btn-info");
     }
     document.getElementById("results").append(result);
     word = [];
@@ -39,13 +40,22 @@ const displayResult = (submitted, isValid) => {
 
 const removeResult = function () {
     event.preventDefault();
+    const numResults = event.target.parentElement.parentElement.children.length;
+    const doneBtn = document.getElementById("done");
+    if (numResults == 1) // Removing the last result
+        doneBtn.setAttribute("class", "btn");
     event.target.parentElement.remove();
 }
 
 const finished = function () {
+    if (document.getElementById("results").children.length < 1) {
+        return;
+    }
     // Tells the server that the player is finished.
     // Then locks the board from further gameplay
     word = [new Letter(1000, 1000, "You finished! Refresh to start a new game.")];
-    document.getElementById("word_functions").remove();
     displayGamestate();
+    document.getElementById("submit").setAttribute("class", "btn");
+    document.getElementById("done").setAttribute("class", "btn");
+
 }

@@ -16,7 +16,6 @@ const generateBoard = function (rows, cols) {
 const randomlyGenerateLetter = function () {
     const percentRoll = Math.floor(Math.random() * 1000) / 10;
     let offset = 0, percentCovered = 0;
-    console.log(percentRoll);
     // Modify randomness by frequency in English
     for(let i = 0; i < letterFrequency.length; i++) {
         percentCovered += letterFrequency[i];

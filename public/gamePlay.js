@@ -1,6 +1,7 @@
 // The game is about creating a word from the letters provided.
 // After the user is happy with their word, they'll submit it.
-let word = []
+let word = [];
+const minWordLength = 2;
 
 // This function is referenced by name in createBoard.js
 const getLocation = function () {
@@ -67,9 +68,9 @@ const displayGamestate = function () {
     });
     // And update the current word
     const current = document.getElementById("current");
-    if (word.length == 0) {
+    if (word.length < minWordLength) {
         current.textContent = "Click on a letter to start a word!";
-        return;
+        document.getElementById("submit").setAttribute("class", "btn");
     } else {
         let disp = "Current String: ";
         word.forEach(letter => {
@@ -78,5 +79,6 @@ const displayGamestate = function () {
             disp += letter.content;
         });
         current.textContent = disp;
+        document.getElementById("submit").setAttribute("class", "btn btn-info")
     }
 }
