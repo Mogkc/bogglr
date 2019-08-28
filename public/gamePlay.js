@@ -66,13 +66,17 @@ const displayGamestate = function () {
         })
     });
     // And update the current word
-    current = document.getElementById("current");
-    let disp = (word.length > 0) ? "Current String: " : "Click on a letter to start a word!";
-    console.log(disp);
-    word.forEach(letter => {
-        if(letter.content.length > 10)
-            disp = "";
-        disp += letter.content;
-    });
-    current.textContent = disp;
+    const current = document.getElementById("current");
+    if (word.length == 0) {
+        current.textContent = "Click on a letter to start a word!";
+        return;
+    } else {
+        let disp = "Current String: ";
+        word.forEach(letter => {
+            if (letter.content.length > 10)
+                disp = "";
+            disp += letter.content;
+        });
+        current.textContent = disp;
+    }
 }

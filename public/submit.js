@@ -8,10 +8,10 @@ const submit = function () {
 }
 
 const wordToServer = function (submitted, callback) {
-    // When there's a backend, this will check he word's veracity
-    const veracity = true; // Hard coded for now
+    // When there's a backend, this will check the word's veracity
+    const isValid = true; // Hard coded for now
     // After recieving a response from the server, it will complete the callback.
-    callback(submitted, veracity);
+    callback(submitted, isValid);
 }
 
 const displayResult = (submitted, isValid) => {
