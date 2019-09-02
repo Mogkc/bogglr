@@ -54,4 +54,4 @@ let letterFrequency = [
  	0.074
 ];
 
-// module.exports = generateBoard;
+if(module.exports) module.exports = generateBoard;

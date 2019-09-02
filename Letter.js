@@ -10,4 +10,4 @@ class Letter {
     }
 }
 
-// module.exports = Letter;
+if(module.exports) module.exports = Letter;

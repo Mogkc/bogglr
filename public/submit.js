@@ -1,8 +1,7 @@
 const submit = function () {
-    // Submit the word
+    // Submit the word if long enough
     if (word.length < minWordLength) return;
     wordToServer(word, displayResult);
-    // Then clear it and let the player start making another
 }
 
 const wordToServer = function (submitted, callback) {

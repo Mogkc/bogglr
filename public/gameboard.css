@@ -12,3 +12,9 @@
 #done {
     float: right;
 }
+
+@media only screen and (max-width: 600px) {
+    #game_board {
+        /* The board needs to stay cohesive at small widths */
+    }
+}
