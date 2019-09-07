@@ -56,5 +56,4 @@ const finished = function () {
     displayGamestate();
     document.getElementById("submit").setAttribute("class", "btn");
     document.getElementById("done").setAttribute("class", "btn");
-
 }
