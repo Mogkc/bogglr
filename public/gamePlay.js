@@ -69,7 +69,7 @@ const displayGamestate = function () {
     });
     // And update the current word
     const current = document.getElementById("current");
-    if (word.length < minWordLength) {
+    if (word.length < 1) {
         current.textContent = "Click on a letter to start a word!";
         document.getElementById("submit").setAttribute("class", "btn");
     } else {
