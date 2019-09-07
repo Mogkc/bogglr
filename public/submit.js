@@ -6,6 +6,7 @@ const submit = function () {
 
 const wordToServer = function (submitted, callback) {
     // When there's a backend, this will check the word's veracity
+    // axios.get("/isValid", { params { word: word } }, res => callback(submitted, res.data))
     const isValid = true; // Hard coded for now
     // After recieving a response from the server, it will complete the callback.
     callback(submitted, isValid);
