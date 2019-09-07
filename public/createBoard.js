@@ -1,3 +1,5 @@
+let board;
+
 const createGameboard = function (virtualBoard) {
     const board_front = document.getElementById("game_board");
     virtualBoard.forEach((row, rInd) => {
@@ -26,8 +28,14 @@ const createGameboard = function (virtualBoard) {
         // And add the complete row to the dom
         board_front.append(_r);
     });
+    board = virtualBoard;
     displayGamestate();
 }
 
-const board = generateBoard(5, 5);
-createGameboard(board);
+const rows = 5, cols = 5;
+
+axios.get(
+    `/board/${rows}/${cols}`,
+).then(res => // Responds with metadata and a virtualBoard
+    createGameboard(res.data)
+);

@@ -52,7 +52,7 @@ const finished = function () {
     }
     // Tells the server that the player is finished.
     // Then locks the board from further gameplay
-    word = [new Letter(1000, 1000, "You finished! Refresh to start a new game.")];
+    word = [ { content: "You finished! Refresh to start a new game." } ];
     displayGamestate();
     document.getElementById("submit").setAttribute("class", "btn");
     document.getElementById("done").setAttribute("class", "btn");

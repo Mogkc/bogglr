@@ -1,3 +1,5 @@
+const Letter = require('./Letter');
+
 const generateBoard = function (rows, cols) {
     const virtualBoard = [];
     for (let row = 0; row < rows; row++) {

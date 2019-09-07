@@ -9,6 +9,7 @@ const getLocation = function () {
     // Every letter is in a column which is in a row, 
     // and each row/col has a val attribute with its index
     const letter = board[parseInt(event.target.parentElement.parentElement.getAttribute("val"))][parseInt(event.target.parentElement.getAttribute("val"))]
+    console.log(letter);
     // If they click on a letter they've already selected,
     // Remove that point and any that follows from their word
     if (!shortenWord(letter)) {
@@ -37,7 +38,7 @@ const shortenWord = function (cutoff) {
     let shortening = false;
     let newLength;
     word.forEach((letter, i) => {
-        if (letter.equals(cutoff)) {
+        if (letter.row === cutoff.row && letter.col === cutoff.col) {
             shortening = true;
             newLength = i;
         }
@@ -56,7 +57,7 @@ const displayGamestate = function () {
                 .children[rowIndex]
                 .children[columnIndex + 1] // +1 for buffer column
                 .children[0];
-            const inWord = word.reduce((acc, curr) => acc || curr.equals(letter), false);
+            const inWord = word.reduce((acc, curr) => acc || curr.row === letter.row && curr.col === letter.col, false);
             if (inWord) { // Show player what's in the word
                 elementHoldingLetter.setAttribute("class", "tile btn btn-success");
             } else if (isValid(letter)) { // Show player what they can add to the word
