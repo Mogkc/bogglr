@@ -9,7 +9,7 @@ const virtualBoard = {
 				instanceBoard[row].push(new Letter(
 					row,
 					col,
-					mapToLetter(Math.random())
+					this.mapToLetter(Math.random())
 				));
 			}
 		}
