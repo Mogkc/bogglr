@@ -3,23 +3,6 @@
 let word = [];
 const minWordLength = 2;
 
-// This function is referenced by name in createBoard.js
-const getLocation = function () {
-    event.preventDefault();
-    // Every letter is in a column which is in a row, 
-    // and each row/col has a val attribute with its index
-    const letter = board[parseInt(event.target.parentElement.parentElement.getAttribute("val"))][parseInt(event.target.parentElement.getAttribute("val"))]
-    // If they click on a letter they've already selected,
-    // Remove that point and any that follows from their word
-    if (!shortenWord(letter)) {
-        // Otherwise, try to add the letter they clicked on to the word
-        if (isValid(letter)) {
-            word.push(letter);
-        }
-    }
-    displayGamestate();
-}
-
 // The player has to choose a letter with a distance of 1 from their 
 const isValid = function (letter) {
     if (word.length == 0) return true;
@@ -46,6 +29,23 @@ const shortenWord = function (cutoff) {
         word = word.splice(0, newLength);
     }
     return shortening;
+}
+
+// This function is referenced by name in createBoard.js
+const getLocation = function () {
+    event.preventDefault();
+    // Every letter is in a column which is in a row, 
+    // and each row/col has a val attribute with its index
+    const letter = board[parseInt(event.target.parentElement.parentElement.getAttribute("val"))][parseInt(event.target.parentElement.getAttribute("val"))]
+    // If they click on a letter they've already selected,
+    // Remove that point and any that follows from their word
+    if (!shortenWord(letter)) {
+        // Otherwise, try to add the letter they clicked on to the word
+        if (isValid(letter)) {
+            word.push(letter);
+        }
+    }
+    displayGamestate();
 }
 
 const displayGamestate = function () {
@@ -79,7 +79,7 @@ const displayGamestate = function () {
             disp += letter.content;
         });
         current.textContent = disp;
-        if(minWordLength <= word.length)
+        if (minWordLength <= word.length)
             document.getElementById("submit").setAttribute("class", "btn btn-info")
     }
 }
