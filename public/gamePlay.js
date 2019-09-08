@@ -9,7 +9,6 @@ const getLocation = function () {
     // Every letter is in a column which is in a row, 
     // and each row/col has a val attribute with its index
     const letter = board[parseInt(event.target.parentElement.parentElement.getAttribute("val"))][parseInt(event.target.parentElement.getAttribute("val"))]
-    console.log(letter);
     // If they click on a letter they've already selected,
     // Remove that point and any that follows from their word
     if (!shortenWord(letter)) {
@@ -80,6 +79,7 @@ const displayGamestate = function () {
             disp += letter.content;
         });
         current.textContent = disp;
-        document.getElementById("submit").setAttribute("class", "btn btn-info")
+        if(minWordLength <= word.length)
+            document.getElementById("submit").setAttribute("class", "btn btn-info")
     }
 }
