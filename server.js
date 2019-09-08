@@ -12,7 +12,7 @@ app.use(express.static("public"));
 // Routes
 app.get("/board/:rows/:cols", (req, res) => {
     res.json(
-        virtualBoard(req.params.rows, req.params.cols)
+        virtualBoard.generate(req.params.rows, req.params.cols)
     );
 });
 
