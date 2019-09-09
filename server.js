@@ -1,6 +1,7 @@
 const http = require('http');
 const express = require('express');
 const virtualBoard = require("./models/virtualBoard");
+const dictionary = require("./models/dictionary")
 
 const app = express();
 
@@ -14,6 +15,10 @@ app.get("/board/:rows/:cols", (req, res) => {
     res.json(
         virtualBoard.generate(req.params.rows, req.params.cols)
     );
+});
+
+app.get("/api/dictionary", (req, res) => {
+    res.json(dictionary);
 });
 
 const PORT = process.env.PORT || 3001;
