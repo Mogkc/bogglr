@@ -21,6 +21,11 @@ app.get("/api/dictionary", (req, res) => {
     res.json(dictionary);
 });
 
+app.get("/api/isWord/:submitted", (req, res) => {
+    const valid = -1 === dictionary.indexOf(req.params.submitted.toLowerCase()) ? false : true;
+    res.json({ valid: valid });
+});
+
 const PORT = process.env.PORT || 3001;
 const server = http.Server(app);
 

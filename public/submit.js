@@ -19,16 +19,11 @@ const submit = function () {
 
 const wordToServer = function (submitted) {
     const text = submitted.reduce((acc, curr) => acc + curr.content, "");
-    // Until word checking is implemented, we assume it's valid
-    foundWords.push({ text: text, valid: true });
-    displayResults();
-
-    // This is what wordchecking will look like
-    /* axios.get("/isValid", { params { word: word } }, res => {
-        foundWords.push({ text: text, valid: res.data });
+    axios.get(`/api/isWord/${text}`).then(res => {
+        console.log("got ", res.data);
+        foundWords.push({ text: text, valid: res.data.valid });
         displayResults();
-    }
-    */
+    });
 }
 
 const removeResult = function () {
@@ -57,14 +52,14 @@ const displayResults = function () {
             linkToDictionary.setAttribute("target", "_blank");
             linkToDictionary.textContent = word.text;
             result.append(linkToDictionary);
-            // Then add a 'remove from list' button
-            const remove = document.createElement("button");
-            remove.setAttribute("class", "remove btn btn-danger");
-            remove.setAttribute("onclick", "removeResult()");
-            result.append(remove);
         } else {
             result.textContent = `Sorry, ${word.text} isn't in our dictionary`;
         }
+        // Then add a 'remove from list' button
+        const remove = document.createElement("button");
+        remove.setAttribute("class", "remove btn btn-danger");
+        remove.setAttribute("onclick", "removeResult()");
+        result.append(remove);
         // Add the result to the list
         results.append(result);
     });
