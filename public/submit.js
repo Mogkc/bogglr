@@ -24,10 +24,9 @@ const check = function (submitted) {
         foundWords.push({ text: text, valid: valid });
     } else { // Without a personal dictionary, check with the one on the server
         axios.get(`/api/isWord/${text}`).then(res => {
-            console.log("got ", res.data);
             foundWords.push({ text: text, valid: res.data.valid });
-            displayResults();
         });
+        displayResults();
     }
 }
 
