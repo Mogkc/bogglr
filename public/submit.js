@@ -31,6 +31,16 @@ const check = function (submitted) {
     }
 }
 
+const closePersonalDictionary = function () {
+    document.getElementById("dictionary").setAttribute("style", "display:none");
+    for(let i = 0; i < foundWords.length; i++) {
+        // Always at 0 because it's being removed and put at the end
+        let toBeRechecked = foundWords[0].text;
+        foundWords.unshift();
+        check(toBeRechecked);
+    }
+}
+
 const removeResult = function () {
     event.preventDefault();
     const textToRemove = event.target.parentElement.children[0].textContent;
