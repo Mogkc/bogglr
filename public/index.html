@@ -14,20 +14,36 @@
 </head>
 
 <body>
-    <section id="tutorial" class="constainer">
-        <div class="card center mx-auto col-sm-8">
-            <div class="card-header">Play Bogglr!</div>
-            <div class="card-body">
-                <p>
-                    You can play by snaking the letters provided together to make words!
-                    You can start anywhere and move to any adjacent letter.
-                    If you want to shorten your word before submitting it,
-                    just click the first letter you want to remove!
-                </p>
-                <p>
-                    There is a default dictionary, but you can
-                    <a class="card-link" onclick="openPersonalDictionary()" style="color:cornflowerblue">use your own</a>
-                </p>
+    <section class="constainer">
+        <div class="row" id="tutorial">
+            <div class="card center mx-auto col-sm-6">
+                <div class="card-header">Play Bogglr!</div>
+                <div class="card-body">
+                    <p>
+                        You can play by snaking the letters provided together to make words!
+                        You can start anywhere and move to any adjacent letter.
+                        If you want to shorten your word before submitting it,
+                        just click the first letter you want to remove!
+                    </p>
+                    <p>
+                        There is a default dictionary, but you can
+                        <a class="card-link" onclick="openPersonalDictionary()" style="color:cornflowerblue">use your
+                            own</a>
+                    </p>
+                </div>
+            </div>
+            <div id="dictionary" class="card center mx-auto col-sm-4" style="display:none">
+                <div class="card-header">
+                    Update Dictionary or
+                    <span style="color:cornflowerblue" onclick="closePersonalDictionary()">
+                        Cancel
+                    </span>
+                </div>
+                <div class="card-body">
+                    <textarea id="dict" cols="50" rows="10"></textarea>
+                    <br>
+                    <button class="btn btn-info" onclick="updatePersonalDictionary()">Update Dictionary</button>
+                </div>
             </div>
         </div>
     </section>
@@ -44,6 +60,7 @@
         <ul id="results"></ul>
     </section>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="personalDictionary.js"></script>
     <script type="text/javascript" src="gamePlay.js"></script>
     <script type="text/javascript" src="createBoard.js"></script>
     <script type="text/javascript" src="submit.js"></script>

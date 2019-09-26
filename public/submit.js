@@ -11,19 +11,24 @@ const foundValidWord = function () {
 const submit = function () {
     // Submit the word if long enough
     if (word.length < minWordLength) return;
-    wordToServer(word);
+    check(word);
     // Then empty the current word and show the board
     word = [];
     displayGamestate();
 }
 
-const wordToServer = function (submitted) {
+const check = function (submitted) {
     const text = submitted.reduce((acc, curr) => acc + curr.content, "");
-    axios.get(`/api/isWord/${text}`).then(res => {
-        console.log("got ", res.data);
-        foundWords.push({ text: text, valid: res.data.valid });
-        displayResults();
-    });
+    if (personalDictionary) {
+        let valid = -1 === dictionary.indexOf(text.toLowerCase()) ? false : true;
+        foundWords.push({ text: text, valid: valid });
+    } else { // Without a personal dictionary, check with the one on the server
+        axios.get(`/api/isWord/${text}`).then(res => {
+            console.log("got ", res.data);
+            foundWords.push({ text: text, valid: res.data.valid });
+            displayResults();
+        });
+    }
 }
 
 const removeResult = function () {
