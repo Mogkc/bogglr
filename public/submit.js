@@ -22,11 +22,12 @@ const check = function (submitted) {
     if (personalDictionary) {
         let valid = -1 === personalDictionary.indexOf(text.toLowerCase()) ? false : true;
         foundWords.push({ text: text, valid: valid });
+        displayResults();
     } else { // Without a personal dictionary, check with the one on the server
         axios.get(`/api/isWord/${text}`).then(res => {
             foundWords.push({ text: text, valid: res.data.valid });
+            displayResults();
         });
-        displayResults();
     }
 }
 
