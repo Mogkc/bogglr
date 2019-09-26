@@ -18,7 +18,7 @@ const submit = function () {
 }
 
 const check = function (submitted) {
-    const text = typeof (submitted) === "string" ?
+    const text = typeof (submitted) !== "string" ?
         submitted.reduce((acc, curr) => acc + curr.content, "")
         : submitted;
     if (personalDictionary) {
