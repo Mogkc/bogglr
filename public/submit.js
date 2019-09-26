@@ -20,7 +20,7 @@ const submit = function () {
 const check = function (submitted) {
     const text = submitted.reduce((acc, curr) => acc + curr.content, "");
     if (personalDictionary) {
-        let valid = -1 === dictionary.indexOf(text.toLowerCase()) ? false : true;
+        let valid = -1 === personalDictionary.indexOf(text.toLowerCase()) ? false : true;
         foundWords.push({ text: text, valid: valid });
     } else { // Without a personal dictionary, check with the one on the server
         axios.get(`/api/isWord/${text}`).then(res => {
