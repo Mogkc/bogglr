@@ -26,7 +26,7 @@ app.get("/api/isWord/:submitted", (req, res) => {
     res.json({ valid: valid });
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 const server = http.Server(app);
 
 server.listen(PORT, function () {
