@@ -6,9 +6,11 @@ const openPersonalDictionary = function () {
 
 const updatePersonalDictionary = function () {
     delimitedWords = document.getElementById("dict").value;
-    personalDictionary = delimitedWords.split(/[^A-Z]+/i).map(elem => elem.toLowerCase());
+    personalDictionary = delimitedWords.split(/[^A-Z]+|$/i)
+        .map(elem => elem.toLowerCase())
+        .filter(elem => elem);
     // So the user can go back to the backend's dictionary
-    if(personalDictionary.length < 2)
+    if (personalDictionary.length < 1)
         personalDictionary = undefined;
     closePersonalDictionary();
 }
