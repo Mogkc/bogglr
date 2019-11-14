@@ -1,7 +1,7 @@
 // The game is about creating a word from the letters provided.
 // After the user is happy with their word, they'll submit it.
 let word = [];
-const minWordLength = 2;
+let minWordLength = document.getElementById("word-length-slider").value;
 
 // The player has to choose a letter with a distance of 1 from their 
 const isValid = function (letter) {
@@ -15,12 +15,20 @@ const isValid = function (letter) {
     return false;
 }
 
-const shortenWord = function (cutoff) {
-    // Returns true if shortened, false if not
+document.getElementById("word-length-slider").oninput = function() {
+    const len = this.value;
+    minWordLength = len;
+    document.getElementById("min-length-disp").textContent = len;
+    displayGamestate();
+}
+
+const removingLetters = function (letterClicked) {
+    // If letterClicked is in the word, shorten the word
+    //by removing it and all following letters. Otherwise, return false
     let shortening = false;
     let newLength;
     word.forEach((letter, i) => {
-        if (letter.row === cutoff.row && letter.col === cutoff.col) {
+        if (letter.row === letterClicked.row && letter.col === letterClicked.col) {
             shortening = true;
             newLength = i;
         }
@@ -39,7 +47,7 @@ const getLocation = function () {
     const letter = board[parseInt(event.target.parentElement.parentElement.getAttribute("val"))][parseInt(event.target.parentElement.getAttribute("val"))]
     // If they click on a letter they've already selected,
     // Remove that point and any that follows from their word
-    if (!shortenWord(letter)) {
+    if (!removingLetters(letter)) {
         // Otherwise, try to add the letter they clicked on to the word
         if (isValid(letter)) {
             word.push(letter);
@@ -66,11 +74,13 @@ const displayGamestate = function () {
             }
         })
     });
+    // Display whether the word is valid to submit
+    document.getElementById("submit").setAttribute("class", 
+    word.length < minWordLength ? "btn" : "btn btn-info");
     // And update the current word
     const current = document.getElementById("current");
-    if (word.length < 1) {
+    if (word.length === 0) {
         current.textContent = "Click on a letter to start a word!";
-        document.getElementById("submit").setAttribute("class", "btn");
     } else {
         let disp = "Current String: ";
         word.forEach(letter => {
@@ -79,7 +89,5 @@ const displayGamestate = function () {
             disp += letter.content;
         });
         current.textContent = disp;
-        if (minWordLength <= word.length)
-            document.getElementById("submit").setAttribute("class", "btn btn-info")
     }
 }
