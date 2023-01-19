@@ -17,7 +17,7 @@ const virtualBoard = {
 	},
 	mapToLetter(seed) {
 		// Seed should be a number between 0 and 1 (inclusive)
-		const percentThroughWeightedAlphabet = Math.floor(seed * 1000) / 10;
+		const percentThroughWeightedAlphabet = seed * 100;
 		let offset = 0, percentCovered = 0;
 		// Modify randomness by frequency in English
 		for (let i = 0; i < this.letterFrequency.length; i++) {
@@ -53,7 +53,7 @@ const virtualBoard = {
 		2.360,
 		0.150,
 		1.974,
-		0.074
+		0.075
 	]
 }
 
